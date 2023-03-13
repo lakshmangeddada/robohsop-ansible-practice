@@ -8,7 +8,7 @@
 - name: Install nginx
   ansible.builtin.yum:
     name: nginx
-    state: latest
+    state: installed
 
 - name: Removing old content
   ansible.builtin.file:
@@ -19,7 +19,6 @@
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: directory
-    mode: '0755'
 
 - name: downloading and unzipping the artifacts
   ansible.builtin.unarchive:
@@ -27,7 +26,7 @@
     dest: /usr/share/nginx/html
     remote_src: yes
 
-- name: Copy file with owner and permissions
+- name: create roboshop nginx conf file
   ansible.builtin.copy:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
