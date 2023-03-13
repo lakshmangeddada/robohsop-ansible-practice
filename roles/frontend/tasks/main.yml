@@ -10,6 +10,12 @@
     name: nginx
     state: installed
 
+- name: Enable and start the nginx service
+  ansible.builtin.systemd:
+    name: nginx
+    enabled: yes
+    state: restarted
+
 - name: Removing old content
   ansible.builtin.file:
     path: /usr/share/nginx/html
@@ -31,10 +37,6 @@
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
-- name: Enable and start the nginx service
-  ansible.builtin.systemd:
-    name: nginx
-    enabled: yes
-    state: restarted
+
 
 
