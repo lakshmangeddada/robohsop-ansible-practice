@@ -28,3 +28,20 @@
   ansible.builtin.yum:
     name: nginx
     state: latest
+
+- name: Removing old content
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: Creating application directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+    mode: '0755'
+
+- name: downloading and unzipping the artifacts
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
