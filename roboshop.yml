@@ -1,4 +1,4 @@
-- name: print component
+- name: print {{ role_name }}
   hosts: localhost
   become: true
   roles:
