@@ -1,0 +1,4 @@
+- name: print component
+  hosts: localhost
+  roles:
+    - "{{ role_name}}"
